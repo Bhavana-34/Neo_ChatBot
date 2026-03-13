@@ -5,6 +5,16 @@ from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
+# Load API keys from Streamlit secrets or environment variables
+if "GROQ_API_KEY" not in os.environ and "GROQ_API_KEY" in st.secrets:
+    os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+if "OPENAI_API_KEY" not in os.environ and "OPENAI_API_KEY" in st.secrets:
+    os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+if "GOOGLE_API_KEY" not in os.environ and "GOOGLE_API_KEY" in st.secrets:
+    os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
+if "TAVILY_API_KEY" not in os.environ and "TAVILY_API_KEY" in st.secrets:
+    os.environ["TAVILY_API_KEY"] = st.secrets["TAVILY_API_KEY"]
+
 from models.llm import get_chatgroq_model, get_best_available_model
 from models.embeddings import get_embedding_model
 from config.config import SYSTEM_PROMPT_BASE, CONCISE_INSTRUCTION, DETAILED_INSTRUCTION, TAVILY_API_KEY
@@ -183,6 +193,10 @@ def chat_page():
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
+    if not chat_model:
+        st.error("❌ No chat model available. Please set up your API keys in Streamlit secrets.")
+        st.stop()
+
     if prompt := st.chat_input("Type your message here..."):
 
         st.session_state.messages.append({"role": "user", "content": prompt})
@@ -217,10 +231,8 @@ def chat_page():
             if TAVILY_API_KEY and should_search(prompt, bool(doc_context)):
                 st.caption("🌐 Web search used")
 
-       
-        st.session_state.messages.append({"role": "assistant", "content": response})
-    else:
-        st.info("🔧 No API keys found in environment variables. Please check the Instructions page to set up your API keys.")
+           
+            st.session_state.messages.append({"role": "assistant", "content": response})
 
 
 def main():
