@@ -8,7 +8,7 @@ GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "")
 TAVILY_API_KEY = os.environ.get("TAVILY_API_KEY", "")
 
 
-GROQ_MODEL = "llama3-70b-8192"
+GROQ_MODEL = "llama-3.3-70b-versatile"
 OPENAI_MODEL = "gpt-4o-mini"
 GEMINI_MODEL = "gemini-1.5-flash"
 
