@@ -30,11 +30,12 @@ def apply_futuristic_theme():
     
     * {
         font-family: 'Space Mono', monospace;
+        color: #ffffff !important;
     }
     
     html, body, [data-testid="stAppViewContainer"] {
-        background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #0d0820 100%);
-        color: #e0e6ff;
+        background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #0d0820 100%) !important;
+        color: #ffffff !important;
     }
     
     /* Sidebar styling */
@@ -44,15 +45,24 @@ def apply_futuristic_theme():
         box-shadow: -10px 0px 40px rgba(0, 217, 255, 0.1);
     }
     
+    [data-testid="stSidebar"] * {
+        color: #ffffff !important;
+    }
+    
     /* Main content area */
     [data-testid="stMain"] {
         background: transparent;
+        color: #ffffff !important;
+    }
+    
+    [data-testid="stMain"] * {
+        color: #ffffff !important;
     }
     
     /* Headers */
     h1, h2, h3 {
         font-family: 'Orbitron', sans-serif;
-        color: #00d9ff;
+        color: #00d9ff !important;
         text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
         font-weight: 700;
     }
@@ -70,8 +80,13 @@ def apply_futuristic_theme():
     }
     
     h3 {
-        color: #ff006e;
+        color: #ff006e !important;
         font-size: 1.3em;
+    }
+    
+    /* Paragraph and general text */
+    p, span, div, label, li, a {
+        color: #ffffff !important;
     }
     
     /* Input fields */
