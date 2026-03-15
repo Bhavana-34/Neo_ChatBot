@@ -22,6 +22,218 @@ from utils.rag_utils import load_documents, split_documents, build_vector_store,
 from utils.search_utils import web_search, should_search
 
 
+def apply_futuristic_theme():
+    """Apply custom futuristic CSS theme"""
+    futuristic_css = """
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
+    
+    * {
+        font-family: 'Space Mono', monospace;
+    }
+    
+    html, body, [data-testid="stAppViewContainer"] {
+        background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #0d0820 100%);
+        color: #e0e6ff;
+    }
+    
+    /* Sidebar styling */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #0f1729 0%, #1a0d2e 100%);
+        border-right: 2px solid #00d9ff;
+        box-shadow: -10px 0px 40px rgba(0, 217, 255, 0.1);
+    }
+    
+    /* Main content area */
+    [data-testid="stMain"] {
+        background: transparent;
+    }
+    
+    /* Headers */
+    h1, h2, h3 {
+        font-family: 'Orbitron', sans-serif;
+        color: #00d9ff;
+        text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+        font-weight: 700;
+    }
+    
+    h1 {
+        font-size: 2.5em;
+        margin-bottom: 0.5em;
+        letter-spacing: 2px;
+    }
+    
+    h2 {
+        font-size: 1.8em;
+        margin-top: 1.5em;
+        letter-spacing: 1px;
+    }
+    
+    h3 {
+        color: #ff006e;
+        font-size: 1.3em;
+    }
+    
+    /* Input fields */
+    input, textarea, [data-testid="stTextInput"] input, [data-testid="stTextArea"] textarea {
+        background-color: rgba(15, 23, 41, 0.8) !important;
+        border: 2px solid #00d9ff !important;
+        color: #e0e6ff !important;
+        border-radius: 8px !important;
+        padding: 12px !important;
+        font-family: 'Space Mono', monospace !important;
+        box-shadow: 0 0 15px rgba(0, 217, 255, 0.2) !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    input:focus, textarea:focus, [data-testid="stTextInput"] input:focus, [data-testid="stTextArea"] textarea:focus {
+        border-color: #ff006e !important;
+        box-shadow: 0 0 25px rgba(255, 0, 110, 0.4) !important;
+    }
+    
+    /* Buttons */
+    button, [data-testid="stButton"] button {
+        background: linear-gradient(135deg, #00d9ff 0%, #0099cc 100%) !important;
+        color: #0a0e27 !important;
+        border: 2px solid #00d9ff !important;
+        font-weight: 700 !important;
+        font-family: 'Orbitron', sans-serif !important;
+        padding: 10px 20px !important;
+        border-radius: 6px !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 0 15px rgba(0, 217, 255, 0.3) !important;
+        letter-spacing: 1px !important;
+    }
+    
+    button:hover, [data-testid="stButton"] button:hover {
+        background: linear-gradient(135deg, #00ff88 0%, #00d9ff 100%) !important;
+        box-shadow: 0 0 25px rgba(0, 255, 136, 0.5) !important;
+        transform: translateY(-2px) !important;
+    }
+    
+    /* Chat messages */
+    [data-testid="stChatMessage"] {
+        background: rgba(26, 26, 62, 0.6) !important;
+        border-left: 4px solid #00d9ff !important;
+        border-radius: 8px !important;
+        padding: 16px !important;
+        margin: 12px 0 !important;
+        backdrop-filter: blur(10px);
+        box-shadow: inset 0 0 20px rgba(0, 217, 255, 0.05);
+    }
+    
+    [data-testid="stChatMessage"][data-testid*="user"] {
+        border-left-color: #ff006e !important;
+        background: rgba(51, 10, 30, 0.5) !important;
+    }
+    
+    [data-testid="stChatMessage"][data-testid*="assistant"] {
+        border-left-color: #00d9ff !important;
+    }
+    
+    /* Radio buttons and checkboxes */
+    [role="radio"], [type="checkbox"] {
+        accent-color: #00d9ff !important;
+    }
+    
+    /* Dividers */
+    hr {
+        border-color: rgba(0, 217, 255, 0.3) !important;
+        border-width: 2px !important;
+    }
+    
+    /* Success/Error messages */
+    [data-testid="stAlert"] {
+        border-radius: 8px !important;
+        font-family: 'Space Mono', monospace !important;
+    }
+    
+    .stAlert[kind="success"] {
+        background-color: rgba(0, 255, 136, 0.15) !important;
+        border: 2px solid #00ff88 !important;
+    }
+    
+    .stAlert[kind="error"] {
+        background-color: rgba(255, 0, 110, 0.15) !important;
+        border: 2px solid #ff006e !important;
+    }
+    
+    .stAlert[kind="info"] {
+        background-color: rgba(0, 217, 255, 0.15) !important;
+        border: 2px solid #00d9ff !important;
+    }
+    
+    /* Spinner */
+    [data-testid="stSpinner"] > div > div {
+        border-top-color: #00d9ff !important;
+        border-right-color: #ff006e !important;
+    }
+    
+    /* Container styling */
+    [data-testid="stVerticalBlock"] > [style*="flex-direction"] {
+        gap: 1rem;
+    }
+    
+    /* Code blocks */
+    pre {
+        background: rgba(10, 14, 39, 0.8) !important;
+        border: 2px solid #00d9ff !important;
+        border-radius: 8px !important;
+        padding: 16px !important;
+        color: #00ff88 !important;
+        box-shadow: 0 0 20px rgba(0, 217, 255, 0.2) !important;
+    }
+    
+    code {
+        color: #00ff88 !important;
+        background: rgba(0, 255, 136, 0.1) !important;
+        padding: 2px 6px !important;
+        border-radius: 4px !important;
+    }
+    
+    /* Markdown links */
+    a {
+        color: #00d9ff !important;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border-bottom: 2px solid transparent;
+    }
+    
+    a:hover {
+        color: #ff006e !important;
+        text-shadow: 0 0 10px rgba(255, 0, 110, 0.5);
+        border-bottom: 2px solid #ff006e !important;
+    }
+    
+    /* Tabs */
+    [data-testid="stTabs"] {
+        background: transparent !important;
+    }
+    
+    button[data-baseweb="tab"] {
+        color: #00d9ff !important;
+        font-family: 'Space Mono', monospace !important;
+    }
+    
+    /* Select boxes */
+    [data-testid="stSelectbox"] {
+        color: #e0e6ff !important;
+    }
+    
+    /* File uploader */
+    [data-testid="stFileUploadDropzone"] {
+        border: 2px dashed #00d9ff !important;
+    }
+    
+    /* Progress bar */
+    [role="progressbar"] {
+        background-color: #00d9ff !important;
+    }
+    </style>
+    """
+    st.markdown(futuristic_css, unsafe_allow_html=True)
+
+
 def get_chat_response(chat_model, messages, system_prompt):
     """Get response from the chat model"""
     try:
@@ -45,8 +257,17 @@ def get_chat_response(chat_model, messages, system_prompt):
 
 def instructions_page():
     """Instructions and setup page"""
-    st.title("The Chatbot Blueprint")
-    st.markdown("Welcome! Follow these instructions to set up and use the chatbot.")
+    col1, col2 = st.columns([2, 1])
+    with col1:
+        st.markdown("# 🚀 NEURAL.NEXUS")
+        st.markdown("### The Chatbot Blueprint")
+    with col2:
+        st.markdown("")
+        st.markdown("")
+        st.markdown("*v1.0 FUTURISTIC EDITION*")
+    
+    st.divider()
+    st.markdown("#### 🌐 Welcome to the next generation of conversational AI")
 
     st.markdown("""
     ## 🔧 Installation
@@ -135,41 +356,58 @@ def instructions_page():
 
 def chat_page():
     """Main chat interface page"""
-    st.title("🤖 AI ChatBot")
+    # Header with futuristic title
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        st.markdown("# ⚡ NEURAL.NEXUS")
+    with col2:
+        st.markdown("### *ACTIVE*")
+    
+    st.markdown("---")
+
+    # Sidebar configuration
+    with st.sidebar:
+        st.markdown("### ⚙️ SYSTEM CONFIG")
+        st.divider()
+        
+        response_mode = st.radio(
+            "🎯 Response Mode",
+            ["Concise", "Detailed"],
+            index=1,
+            help="Concise: short 2-4 sentence answers. Detailed: full in-depth responses."
+        )
+        
+        st.divider()
+        st.markdown("### 📚 KNOWLEDGE BASE")
+        
+        uploaded_files = st.file_uploader(
+            "🔼 Upload Documents",
+            type=["pdf", "txt", "md", "docx"],
+            accept_multiple_files=True,
+            label_visibility="collapsed"
+        )
 
  
-    response_mode = st.sidebar.radio(
-        "Response Mode",
-        ["Concise", "Detailed"],
-        index=1,
-        help="Concise: short 2-4 sentence answers. Detailed: full in-depth responses."
-    )
-
-    st.sidebar.markdown("---")
-    st.sidebar.markdown("### 📂 Upload Documents (RAG)")
-    uploaded_files = st.sidebar.file_uploader(
-        "Upload PDFs, TXT or DOCX files",
-        type=["pdf", "txt", "md", "docx"],
-        accept_multiple_files=True,
-        label_visibility="collapsed"
-    )
-
- 
-    if uploaded_files:
-        file_names = [f.name for f in uploaded_files]
-        if file_names != st.session_state.get("uploaded_file_names"):
-            with st.spinner("Processing documents..."):
-                try:
-                    embed_model = get_embedding_model()
-                    if embed_model:
-                        docs = load_documents(uploaded_files)
-                        chunks = split_documents(docs)
-                        st.session_state.vector_store = build_vector_store(chunks, embed_model)
-                        st.session_state.uploaded_file_names = file_names
-                        st.sidebar.success(f"✅ Indexed {len(chunks)} chunks")
-                except Exception as e:
-                    st.sidebar.error(f"Error processing documents: {e}")
-
+        if uploaded_files:
+            file_names = [f.name for f in uploaded_files]
+            if file_names != st.session_state.get("uploaded_file_names"):
+                with st.spinner("⏳ Indexing documents..."):
+                    try:
+                        embed_model = get_embedding_model()
+                        if embed_model:
+                            docs = load_documents(uploaded_files)
+                            chunks = split_documents(docs)
+                            st.session_state.vector_store = build_vector_store(chunks, embed_model)
+                            st.session_state.uploaded_file_names = file_names
+                            st.sidebar.success(f"✅ Indexed {len(chunks)} knowledge chunks")
+                    except Exception as e:
+                        st.sidebar.error(f"❌ Error: {e}")
+        
+        st.divider()
+        st.markdown("### 🧹 ACTIONS")
+        if st.button("🗑️ Clear Memory", use_container_width=True):
+            st.session_state.messages = []
+            st.rerun()
  
     mode_instruction = CONCISE_INSTRUCTION if response_mode == "Concise" else DETAILED_INSTRUCTION
     system_prompt = SYSTEM_PROMPT_BASE + mode_instruction
@@ -189,15 +427,16 @@ def chat_page():
     if "uploaded_file_names" not in st.session_state:
         st.session_state.uploaded_file_names = []
 
+    # Display chat history
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
     if not chat_model:
-        st.error("❌ No chat model available. Please set up your API keys in Streamlit secrets.")
+        st.error("❌ SYSTEM ERROR: No chat model available. Configure API keys in Streamlit secrets.")
         st.stop()
 
-    if prompt := st.chat_input("Type your message here..."):
+    if prompt := st.chat_input("🔮 Enter your query..."):
 
         st.session_state.messages.append({"role": "user", "content": prompt})
 
@@ -214,22 +453,27 @@ def chat_page():
 
     
         if should_search(prompt, bool(doc_context)):
-            with st.spinner("Searching the web..."):
+            with st.spinner("🌐 Scanning the web..."):
                 web_results = web_search(prompt)
                 if web_results:
                     system_prompt += f"\n\n=== WEB SEARCH RESULTS ===\n{web_results}\n=== END WEB RESULTS ==="
 
       
         with st.chat_message("assistant"):
-            with st.spinner("Getting response..."):
+            with st.spinner("🧠 PROCESSING..."):
                 response = get_chat_response(chat_model, st.session_state.messages, system_prompt)
                 st.markdown(response)
 
            
+            metadata_cols = st.columns(3)
             if doc_context:
-                st.caption("📄 Answer based on uploaded documents")
+                with metadata_cols[0]:
+                    st.caption("📄 Knowledge base")
             if TAVILY_API_KEY and should_search(prompt, bool(doc_context)):
-                st.caption("🌐 Web search used")
+                with metadata_cols[1]:
+                    st.caption("🌐 Web search")
+            with metadata_cols[2]:
+                st.caption(f"🤖 {response_mode} mode")
 
            
             st.session_state.messages.append({"role": "assistant", "content": response})
@@ -237,31 +481,39 @@ def chat_page():
 
 def main():
     st.set_page_config(
-        page_title="LangChain Multi-Provider ChatBot",
-        page_icon="🤖",
+        page_title="NEURAL.NEXUS - AI Chatbot",
+        page_icon="⚡",
         layout="wide",
         initial_sidebar_state="expanded"
     )
+    
+    # Apply futuristic theme
+    apply_futuristic_theme()
 
     with st.sidebar:
-        st.title("Navigation")
+        st.markdown("---")
+        st.image("https://via.placeholder.com/250x100/0a0e27/00d9ff?text=NEURAL.NEXUS", use_column_width=True)
+        st.markdown("---")
+        st.title("🗺️ NAVIGATION")
         page = st.radio(
-            "Go to:",
-            ["Chat", "Instructions"],
-            index=0
+            "Select Module:",
+            ["💬 Chat", "📖 Instructions"],
+            index=0,
+            label_visibility="collapsed"
         )
-
-        if page == "Chat":
-            st.divider()
-            if st.button("🗑️ Clear Chat History", use_container_width=True):
-                st.session_state.messages = []
-                st.rerun()
+        st.markdown("---")
+        st.markdown("**BUILD INFO**")
+        st.markdown("""
+        - Version: 1.0 FUTURISTIC
+        - Status: ONLINE ✓
+        - Mode: PRODUCTION
+        """)
 
     
-    if page == "Instructions":
-        instructions_page()
-    if page == "Chat":
+    if page == "💬 Chat" or page == "Chat":
         chat_page()
+    elif page == "📖 Instructions" or page == "Instructions":
+        instructions_page()
 
 
 if __name__ == "__main__":

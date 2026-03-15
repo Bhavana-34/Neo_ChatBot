@@ -1,0 +1,20 @@
+[theme]
+primaryColor = "#00d9ff"
+backgroundColor = "#0a0e27"
+secondaryBackgroundColor = "#1a1a3e"
+textColor = "#e0e6ff"
+font = "monospace"
+
+[client]
+showErrorDetails = true
+toolbarMode = "minimal"
+
+[logger]
+level = "info"
+
+[ui]
+hideTopBar = false
+theme = "dark"
+
+[client]
+toolbarMode = "minimal"
